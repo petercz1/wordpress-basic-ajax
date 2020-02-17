@@ -5,7 +5,7 @@ class WP_Ajax_Loadjs
 {
     public function init()
     {
-        error_log('loading css...');
+        error_log('loading js...');
         wp_enqueue_style('WP-ajax-tester-css', plugins_url('css/WP-ajax.css', __FILE__));
     }
 }
