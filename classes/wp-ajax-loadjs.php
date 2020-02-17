@@ -1,7 +1,7 @@
 <?php
 namespace chipbug\basic\ajax;
 
-class WP_Ajax_Loadcss
+class WP_Ajax_Loadjs
 {
     public function init()
     {
