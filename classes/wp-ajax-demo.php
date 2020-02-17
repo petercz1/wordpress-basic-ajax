@@ -9,7 +9,7 @@ class WP_Ajax_Demo
         add_action('admin_enqueue_scripts', array($wp_ajax_loadcss, 'init')); 	// loads css
 
         $wp_ajax_loadjs = new WP_Ajax_Loadjs();
-        add_Action('admin_enqueue_scripts', array($wp_ajax_loadjs. 'init'))
+        add_Action('admin_enqueue_scripts', array($wp_ajax_loadjs. 'init')); 
 
         $wp_ajax_menuitem = new WP_Ajax_Menuitem();
         add_action('admin_menu', array($wp_ajax_menuitem, 'init'));			// loads menu item
