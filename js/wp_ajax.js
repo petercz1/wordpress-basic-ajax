@@ -1,26 +1,26 @@
-console.log('loaded...');
+console.log('ready...');
+jQuery(document).ready(function ($) {
 
-jQuery(document).ready(function () {
-
-  jQuery('#content').on('click', 'a.rml_bttn', function (e) {
-    e.preventDefault();
-
-    var rml_post_id = jQuery(this).data('id');
-
-    jQuery.ajax({
-      url: readmelater_ajax.ajax_url,
-      type: 'post',
-      data: {
-        action: 'read_me_later',
-        security: readmelater_ajax.check_nonce,
-        post_id: rml_post_id
-      },
-      success: function (response) {
-        jQuery('.rml_contents').html(response);
-      }
-    });
-
-    jQuery(this).hide();
+  $('#WP-ajax-button').click(function () {
+    var id = $('#WP-ajax-option-id').val();
+    $.ajax({
+        method: "POST",
+        url: ajaxurl,
+        data: {
+          'action': 'WP_ajax_handler',
+          'id': id
+        }
+      })
+      .done(function (data) {
+        console.log('Successful AJAX Call! /// Return Data: ' + data);
+        data = JSON.parse(data);
+        $('#WP-ajax-table').append('<tr><td>' + data.option_id + '</td><td>' + data
+          .option_name + '</td><td>' + data.option_value + '</td><td>' + data
+          .autoload + '</td></tr>');
+      })
+      .fail(function (data) {
+        console.log('Failed AJAX Call :( /// Return Data: ' + data);
+      });
   });
 
 });
