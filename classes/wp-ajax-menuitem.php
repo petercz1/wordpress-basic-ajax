@@ -9,6 +9,9 @@ class WP_Ajax_Menuitem
     public function init()
     {
         error_log('adding menu stuff');
-        add_menu_page('AJAX Tester', 'AJAX Tester', 'edit_pages', 'WP_ajax_adminpage', 'chipbug\basic\ajax\WP_ajax_adminpage', 'dashicons-clipboard', 49);
+        $wp_ajax_adminpage = new WP_Ajax_Adminpage();
+
+        add_menu_page(
+            'AJAX title Tester', 'AJAX menu Tester', 'edit_pages', 'WP_ajax_adminpage', array($wp_ajax_adminpage, 'init'), 'dashicons-clipboard', 49);
     }
 }

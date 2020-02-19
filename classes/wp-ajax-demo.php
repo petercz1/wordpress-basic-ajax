@@ -5,22 +5,18 @@ class WP_Ajax_Demo
 {
     public function init()
     {
-        $wp_ajax_loadcss = new WP_Ajax_Loadcss();
-        add_action('enqueue_scripts', array($wp_ajax_loadcss, 'init')); 	// loads css
+        
+        // add js and css for both admin and frontend
+        $wp_ajax_loadscripts = new WP_Ajax_Loadscripts();
+        add_action('wp_enqueue_scripts', array($wp_ajax_loadscripts, 'init')); 	// loads css
+        add_action('admin_enqueue_scripts', array($wp_ajax_loadscripts, 'init')); 	// loads css
 
-        // // added this...
-        // $wp_ajax_loadjs = new WP_Ajax_Loadjs();
-        // add_action('enqueue_scripts', array($wp_ajax_loadjs, 'init')); // load js
-
+        // loading wp_ajax_menuitem
         $wp_ajax_menuitem = new WP_Ajax_Menuitem();
         add_action('admin_menu', array($wp_ajax_menuitem, 'init'));			// loads menu item
 
-        // ... and cancelled this.
-        $wp_ajax_js = new WP_Ajax_Js();
-        add_action('admin_footer', array($wp_ajax_js, 'init'));				// loads ajax js
-
         // this is the weird one. The WordPress ajax handler needs 'wp_ajax_' in front of the requested function...
-        $wp_ajax_handler = new WP_Ajax_Db_Handler();
-        add_action('wp_ajax_WP_ajax_handler', array($wp_ajax_handler, 'init')); // loads server-side ajax handler 
+        $wp_ajax_db_handler = new WP_Ajax_Db_Handler();
+        add_action('wp_ajax_WP_ajax_db_handler', array($wp_ajax_db_handler, 'init')); // loads server-side ajax handler 
     }
 }
